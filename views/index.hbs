@@ -1,14 +1,86 @@
 <div class="container-fiuld">
+  
   <div class="row">
-    <div class="col-2">
+    <div class="col-2" style="background-color:#303030;">
       {{> nav-left}}
     </div>
 
-    <div class="col-6" style="border:1px solid red; width:80%;">
-      <div class="d-flex justify-content-center align-items-start">
-        <h6>新增</h6>
-      </div>
-    </div>
+
+    <div class="col-10" style="background-color:#202a3c">
+      <div class="d-flex justify-content-center align-items-start mt-5" style="color:#F5F5F5;">
+        <div class="ms-5 mt-5 text-center" style="width:100px; height:100px;border:3px solid #D4D4D4; border-radius:50%;">
+          <div class="d-flex justify-content-center mt-3 me-1" style=" height: 35px; color: #F5F5F5">
+            <h3 class="text-center">10</h3>
+          </div>
+          <div class="d-flex justify-content-center mt-1" style="color: #D4D4D4">
+            <p style="font-size: 14px;">Dives</p>
+          </div>
+        </div>
+
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" style="background-color:#202a3c; color:#D4D4D4;" aria-current="page" href="#">Diving Log</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">link</a>
+            </li>
+          </ul>
+          
+          <div class="d-flex justify-content-start align-items-center">
+            <div class="d-flex mt-5">
+              <h2 class="fw-bold" style="color:#F5F5F5">我的潛水日誌</h2> 
+            </div>
+            {{#if user.isAdmin }}
+            <div class="ms-5">
+              <a class="btn btn-link ps-2 pe-2" href="/users/{{user._id}}" style="text-decoration:none; ">
+                <h5 class="fw-bold" style="color: #5179bd;">前台管理</h5>
+              </a>
+            </div>
+            {{/if}}
+          </div>
+        
+          <br />
+          <br />
+         
+          <table class="table align-middle" style="color:#D4D4D4">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="width: 15%;">日期</th>
+                <th scope="col" style="width: 20%;">地點</th>
+                <th scope="col" style="width: 15%;">方式</th>
+                <th scope="col" style="width: 15%;">累計</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th scope="row" style="color:#F5F5F5">2023/6/18</th>
+                <td style="color:#F5F5F5">蚊子坑</td>
+                <td style="color:#F5F5F5">岸潛</td>
+                <td style="color:#F5F5F5; justify-content:center; padding-left:25px;">1</td>
+                <td style="color:#F5F5F5" style="border:1px solid green;">
+                  <button type="button" class="btn btn-link" style="width:120px;">
+                    <a class="btn btn-link link-primary" style="text-decoration:none;" href="/admin/hospitals/{{this._id}}">
+                      <span style="color:#D4D4D4">Show</span>
+                    </a>
+                  </button>
+                  <button type="button" class="btn btn-link" style="width:120px;">
+                    <a class="btn btn-link link-primary" style="text-decoration:none;color:#D4D4D4;" href="/admin/hospitals/{{this._id}}/edit">
+                      <span style="color:#D4D4D4">Edit</span>
+                    </a>
+                  </button>
+                  <form action="/admin/hospitals/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-link link-danger" style="text-decoration:none;; width:120px;"
+                      onclick="return confirm(`確定要刪除 {{ this.name }} 嗎？`)" ><span style="color:#454545">Delete</span></button>
+                  </form>
+                </td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
   
 
   </div>
