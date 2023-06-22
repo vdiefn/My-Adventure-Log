@@ -15,6 +15,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers }))
 app.set('view engine', 'hbs')
+app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 
 const db = mongoose.connection

@@ -1,6 +1,6 @@
-<div class="container-fiuld">
+
   
-  <div class="row">
+  <div class="row" style="min-height:100vh">
     <div class="col-2" style="background-color:#303030;">
       {{> nav-left}}
     </div>
@@ -18,6 +18,12 @@
         </div>
 
         <div class="container">
+          <div class="d-flex justify-content-end">
+            <script language="javascript">
+              var Today = new Date();
+              document.write("今天日期： " + Today.getFullYear() + " 年 " + (Today.getMonth() + 1) + " 月 " + Today.getDate() + " 日");
+            </script>
+          </div>
           <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link active fw-bold" style="background-color:#202a3c; color:#D4D4D4;" aria-current="page" href="#">Diving Log</a>
@@ -32,7 +38,7 @@
               <h2 class="fw-bold" style="color:#F5F5F5">我的潛水日誌</h2> 
             </div>
             <div class="d-flex justify-content-end align-items-center">
-              <a href="/create">
+              <a href="/dives/create">
               <i class="fa-solid fa-circle-plus fs-4 me-5" style="color: #ced6e3;"></i>
               </a>
             </div>
@@ -59,37 +65,36 @@
               </tr>
             </thead>
             <tbody>
-              
+              {{#each dives}}
               <tr>
-                <th scope="row" style="color:#F5F5F5">2023/6/18</th>
-                <td style="color:#F5F5F5">蚊子坑</td>
-                <td style="color:#F5F5F5">岸潛</td>
+                <th scope="row" style="color:#F5F5F5">{{this.date}}</th>
+                <td style="color:#F5F5F5">{{this.location}}</td>
+                <td style="color:#F5F5F5">{{this.type}}</td>
                 <td style="color:#F5F5F5; justify-content:center; padding-left:25px;">1</td>
                 <td style="color:#F5F5F5" style="border:1px solid green;">
                   <button type="button" class="btn btn-link" style="width:120px;">
-                    <a class="btn btn-link link-primary" style="text-decoration:none;" href="/admin/hospitals/{{this._id}}">
+                    <a class="btn btn-link link-primary" style="text-decoration:none;" href="/dives/{{this._id}}">
                       <span style="color:#D4D4D4">Show</span>
                     </a>
                   </button>
                   <button type="button" class="btn btn-link" style="width:120px;">
-                    <a class="btn btn-link link-primary" style="text-decoration:none;color:#D4D4D4;" href="/admin/hospitals/{{this._id}}/edit">
+                    <a class="btn btn-link link-primary" style="text-decoration:none;color:#D4D4D4;" href="/dives/{{this._id}}/edit">
                       <span style="color:#D4D4D4">Edit</span>
                     </a>
                   </button>
-                  <form action="/admin/hospitals/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+                  <form action="/dives/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
                     <button type="submit" class="btn btn-link link-danger" style="text-decoration:none;; width:120px;"
                       onclick="return confirm(`確定要刪除 {{ this.name }} 嗎？`)" ><span style="color:#454545">Delete</span></button>
                   </form>
                 </td>
               </tr>
-             
+             {{/each}}
             </tbody>
           </table>
         </div>
   
 
   </div>
-</div>
 
 
 

@@ -1,0 +1,163 @@
+<div class="container-fiuld">
+
+  <div class="row">
+    <div class="col-2" style="background-color:#303030;">
+      {{> nav-left}}
+    </div>
+
+    <div class="col-10" style="background-color:#202a3c">
+      <div class="d-flex justify-content-center">
+        <form action="/dives" method="POST" style="width: 60%;">
+          <div class="mt-5 text-center">
+            <h2 class="fw-bold" style="color:#F5F5F5;"><i class="fa-regular fa-pen-to-square" style="color: #abb4c4;"></i>新增潛水紀錄</h2>
+          </div>
+
+          <div class="text-center mt-5 pt-5 mb-5" style="width: 80%; margin: auto; border:3px solid #BFBFBF; opacity:0.8; border-radius: 2%;">
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="date" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                日期
+              </label>
+              <div class="col-md-7">
+                <input type="date" name="date" class="form-control" id="date" placeholder="請選擇日期" required>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="subject" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                主題
+              </label>
+              <div class="col-md-7">
+                <input type="text" name="subject" class="form-control" id="subject" placeholder="請輸入主題" >
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="location" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                地點
+              </label>
+              <div class="col-md-7">
+                <input type="text" name="location" class="form-control" id="location" placeholder="請輸入地點" required>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="divingType" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                方式
+              </label>
+              <div class="col-md-7">
+                <select name="divingType" id="divingType" class="form-control">
+                  <option value="" disabled selected required>潛水方式</option>
+                  <option value="岸潛">岸潛</option>
+                  <option value="船潛">船潛</option>
+                  <option value="冰潛">冰潛</option>
+                  <option value="體驗潛水">體驗潛水</option>
+                  <option value="高海拔潛水">高海拔潛水</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="weather" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                天氣
+              </label>
+              <div class="col-md-7">
+                <select name="weather" id="weather" class="form-control">
+                  <option value="" disabled selected>請選擇當日天氣</option>
+                  <option value="晴天">晴天</option>
+                  <option value="陰天">陰天</option>
+                  <option value="雨天">雨天</option>
+                  <option value="晴時雨">晴時雨</option>
+                  <option value="陰時雨">陰時雨</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="surfaceTemp" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                水面溫度
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="surfaceTemp" class="form-control" id="surfaceTemp" placeholder="請輸入水面溫度" min="-20" max="40" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="underwaterTemp" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                水下溫度
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="underwaterTemp" class="form-control" id="underwaterTemp" placeholder="請輸入水下溫度" min="-20" max="40" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="divingTime" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                潛水時間
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="divingTime" class="form-control" id="divingTime" placeholder="請輸入潛水時間(單位:分鐘)" min="0" max="120" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="maxDepth" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                最大深度
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="maxDepth" class="form-control" id="maxDepth" placeholder="請輸入最大深度" min="0" max="60" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="maxDepth" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                殘壓
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="residualPressure" class="form-control" id="residualPressure" placeholder="請輸入殘壓" min="0" max="200" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="visibility" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                能見度
+              </label>
+              <div class="col-md-7">
+                <input type="number" name="visibility" class="form-control" id="visibility" placeholder="請輸入能見度" min="0" max="30" step="1">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="image" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                照片
+              </label>
+              <div class="col-md-7">
+                <input type="file" name="image" class="form-control" id="image">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2 me-5">
+              <label for="note" class="col-md-4 col-form-label" style="color:#D4D4D4">
+                筆記
+              </label>
+              <div class="col-md-7">
+                <textarea type="text" name="note" class="form-control" id="note" rows="5" cols="20"></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-between mb-3 mt-3 g-2 me-4">
+              <a href="/" type="button" class="btn ms-5"><i class="fa-solid fa-x" style="color: #D4D4D4;"></i></a>
+              <button class="btn ms-2" type="submit"><i class="fa-solid fa-check" style="color: #D4D4D4;"></i></button>
+              
+            </div>
+
+          </div>
+          
+        </form>
+      </div>
+      
+    </div>
+  
+  </div>
+</div>  
+

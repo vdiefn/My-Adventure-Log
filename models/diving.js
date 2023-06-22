@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const divingSchema = new Schema({
   date:{
-    type: Date,
+    type: String,
     required: true
   },
   subject: {
@@ -19,22 +19,22 @@ const divingSchema = new Schema({
     type: String
   },
   surfaceTemp: {
-    type: Number
+    type: String
   },
   underwaterTemp: {
-    type: Number
+    type: String
   },
   divingTime: {
-    type: Number
+    type: String
   },
   maxDepth: {
-    type: Number
+    type: String
   },
   residualPressue: {
-    type: Number
+    type: String
   },
   visibility: {
-    type: Number
+    type: String
   },
   image: {
     type: String
