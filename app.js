@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const routes = require('./routes')
 const handlebarsHelpers = require('./helpers/handlebars-helpers')
+const path = require('path')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -17,6 +18,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: hand
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
+app.use('/upload', express.static(path.join(__dirname, 'upload')))
 
 const db = mongoose.connection
 

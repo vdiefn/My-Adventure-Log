@@ -1,3 +1,4 @@
+const { localFileHandler } = require("../helpers/file-helpers")
 const Diving = require("../models/diving")
 
 const divingController = {
@@ -12,9 +13,11 @@ const divingController = {
   },
   createDiving: (req, res) => {
     const { date, subject, location, divingType, weather, surfaceTemp, underwaterTemp, divingTime, maxDepth, residualPressure, visibility, note } = req.body
+    const { file } = req
     if ( !date ) throw new Error('請填上日期！')
     if ( !location ) throw new Error('請加入潛水地點！')
-    Diving.create({
+    localFileHandler(file)
+      .then(file => Diving.create({
       date, 
       subject, 
       location, 
@@ -26,13 +29,24 @@ const divingController = {
       maxDepth, 
       residualPressure, 
       visibility, 
-      note
-    })
+      note,
+      image: filePath || null
+    }))
     .then(() => {
       
       res.redirect('/dives')
     })
     .catch(err => console.log(err))
+  },
+  getDive: (req, res) => {
+    const id = req.params.id
+    Diving.findById(id)
+      .lean()
+      .then(dive => {
+        if (!dive) throw new Error ("record didn't exist!")
+        res.render('dive', { dive })
+      })
+      .catch(err => console.log(err))
   }
 }
 
