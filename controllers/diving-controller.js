@@ -1,11 +1,16 @@
 const { localFileHandler } = require("../helpers/file-helpers")
 const Diving = require("../models/diving")
+const divingCountCalculator = require('../divingCountCalculator')
+
 
 const divingController = {
   getDives: (req, res) => {
     return Diving.find()
     .lean()
-    .then(dives => res.render('dives', { dives }))
+    .then(dives => {
+      totalCount = divingCountCalculator(dives)
+      return res.render('dives', { dives, totalCount })
+    })
     .catch(err => console.log(err))
   },
   createPage: (req, res) => {
@@ -17,7 +22,7 @@ const divingController = {
     if ( !date ) throw new Error('請填上日期！')
     if ( !location ) throw new Error('請加入潛水地點！')
     localFileHandler(file)
-      .then(file => Diving.create({
+      .then(filePath => Diving.create({
       date, 
       subject, 
       location, 
