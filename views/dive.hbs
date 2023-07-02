@@ -5,7 +5,7 @@
 
   <div class="col-10" style="background-color:#202a3c">
     <div class="d-flex justify-content-start mt-5 ms-5" style="color:#F5F5F5;">
-      <a href="javascript:history.back()">
+      <a href="/">
         <i class="fa-solid fa-arrow-left-long" style="color: #F5F5F5;"></i>
       </a>
     </div>
@@ -26,8 +26,8 @@
             <div class="align-items-center mt-3">
               <h6>日期：{{dive.date}}</h6>
             </div>
-            <div class="align-items-center mt-3 mb-2">
-              <h6>方式：{{dive.type}}</h6>
+            <div class="align-items-center mt-4 mb-2">
+              <h6>方式：{{dive.divingType}}</h6>
             </div>
           </div>
 
@@ -35,34 +35,76 @@
             <div class="align-items-center mt-3">
               <h6>主題：{{dive.subject}}</h6>
             </div>
-            <div class="align-items-center mt-3">
+            {{#if dive.weather}}
+            <div class="align-items-center mt-4">
               <h6>天氣：{{dive.weather}}</h6>
             </div>
+            {{else}}
+            <div class="align-items-center mt-4">
+              <h6>天氣：<i class="fa-solid fa-question" style="color: #F5F5F5;"></i></h6>
+            </div>
+            {{/if}}
           </div>
           <hr>
           
           <div class="mt-3 col " style="width: 45%; color:#F5F5F5;">
+            {{#if dive.surfaceTemp}}
             <div class="align-items-center mt-3">
               <h6>水面溫度：{{dive.surfaceTemp}}&nbsp;<span>℃</span></h6>
             </div>
-            <div class="align-items-center mt-3 mb-2">
+            {{else}}
+            <div class="align-items-center mt-3">
+              <h6>水面溫度：-- &nbsp;<span>℃</span></h6>
+            </div>
+            {{/if}}
+            {{#if dive.divingTime}}
+            <div class="align-items-center mt-4 mb-2">
               <h6>潛水時間：{{dive.divingTime}}&nbsp;分鐘</h6>
             </div>
-            <div class="align-items-center mt-3 mb-2">
+            {{else}}
+            <div class="align-items-center mt-4 mb-2">
+              <h6>潛水時間：--&nbsp;分鐘</h6>
+            </div>
+            {{/if}}
+            {{#if dive.residualPressure}}
+            <div class="align-items-center mt-4 mb-2">
               <h6>殘壓：{{dive.residualPressure}}&nbsp;bar</h6>
             </div>
+            {{else}}
+            <div class="align-items-center mt-4 mb-2">
+              <h6>殘壓：-- &nbsp;bar</h6>
+            </div>
+            {{/if}}
           </div>
 
           <div class="mt-3 col " style="width: 45%; color:#F5F5F5;">
+            {{#if dive.underwaterTemp}}
             <div class="align-items-center mt-3">
               <h6>水下溫度：{{dive.underwaterTemp}}&nbsp;℃</h6>
             </div>
-            <div class="align-items-center mt-3 mb-2">
+            {{else}}
+            <div class="align-items-center mt-3">
+              <h6>水下溫度：-- &nbsp;℃</h6>
+            </div>
+            {{/if}}
+            {{#if dive.maxDepth}}
+            <div class="align-items-center mt-4 mb-2">
               <h6>最大深度：{{dive.maxDepth}}&nbsp;公尺</h6>
             </div>
-            <div class="align-items-center mt-3 mb-2">
+            {{else}}
+            <div class="align-items-center mt-4 mb-2">
+              <h6>最大深度：-- &nbsp;公尺</h6>
+            </div>
+            {{/if}}
+            {{#if dive.visibility}}
+            <div class="align-items-center mt-4 mb-2">
               <h6>能見度：{{dive.visibility}}&nbsp;公尺</h6>
             </div>
+            {{else}}
+            <div class="align-items-center mt-4 mb-2">
+              <h6>能見度：-- &nbsp;公尺</h6>
+            </div>
+            {{/if}}
           </div>
 
         </div>

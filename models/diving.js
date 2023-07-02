@@ -14,6 +14,7 @@ const divingSchema = new Schema({
   },
   divingType: {
     type: String,
+    required: true
   },
   weather: {
     type: String
@@ -25,13 +26,15 @@ const divingSchema = new Schema({
     type: String
   },
   divingTime: {
-    type: String
+    type: String,
+    default: 40
   },
   maxDepth: {
     type: String
   },
-  residualPressue: {
-    type: String
+  residualPressure: {
+    type: String,
+    default: 50
   },
   visibility: {
     type: String

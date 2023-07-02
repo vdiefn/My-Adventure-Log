@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const routes = require('./routes')
 const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const path = require('path')
@@ -17,8 +18,10 @@ mongoose.connect(process.env.MONGODB_URI)
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers }))
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 app.use(routes)
 app.use('/upload', express.static(path.join(__dirname, 'upload')))
+
 
 const db = mongoose.connection
 

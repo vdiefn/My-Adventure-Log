@@ -42,13 +42,6 @@
               <i class="fa-solid fa-circle-plus fs-4 me-5" style="color: #ced6e3;"></i>
               </a>
             </div>
-            {{#if user.isAdmin }}
-            <div class="ms-5">
-              <a class="btn btn-link ps-2 pe-2" href="/users/{{user._id}}" style="text-decoration:none; ">
-                <h5 class="fw-bold" style="color: #5179bd;">前台管理</h5>
-              </a>
-            </div>
-            {{/if}}
           </div>
         
           <br />
@@ -83,8 +76,7 @@
                     </a>
                   </button>
                   <form action="/dives/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit" class="btn btn-link link-danger" style="text-decoration:none;; width:120px;"
-                      onclick="return confirm(`確定要刪除 {{ this.name }} 嗎？`)" ><span style="color:#454545">Delete</span></button>
+                    <button type="submit" class="btn btn-link link-danger" style="text-decoration:none;; width:120px;" onclick="return confirm(`確定要刪除這筆資料嗎？`)" ><span style="color:#454545">刪除</span></button>
                   </form>
                 </td>
               </tr>
