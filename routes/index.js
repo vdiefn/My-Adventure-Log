@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const divingController = require('../controllers/diving-controller')
+const userController = require('../controllers/user-controller')
 const upload = require('../middleware/multer')
 
 
@@ -21,7 +22,11 @@ router.delete('/dives/:id', divingController.deleteDive)
 // 瀏覽全部紀錄
 router.get('/dives', divingController.getDives)
 
+// 登入
+router.get('/login', userController.loginPage)
 
+// 註冊
+router.get('/register', userController.registerPage)
 
 router.get('/', (req, res) => res.redirect('/dives'))
 

@@ -48,7 +48,7 @@ const divingController = {
     Diving.findById(id)
       .lean()
       .then(dive => {
-        if (!dive) throw new Error ("record didn't exist!")
+        if (!dive) throw new Error("該筆資料不存在！")
         res.render('dive', { dive })
       })
       .catch(err => console.log(err))
@@ -87,7 +87,6 @@ const divingController = {
         dive.visibility = visibility
         dive.note = note
         dive.image = filePath || dive.image
-        console.log(dive)
         return dive.save()
         
       })
@@ -98,7 +97,7 @@ const divingController = {
     const id = req.params.id
     return Diving.findById(id)
       .then(dive => {
-      if (!dive) throw new Error("This record doesn't exist!")
+      if (!dive) throw new Error("該筆資料不存在！")
       dive.deleteOne()
       })
     .then(() => res.redirect('/dives'))
