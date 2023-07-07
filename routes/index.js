@@ -27,6 +27,7 @@ router.get('/login', userController.loginPage)
 
 // 註冊
 router.get('/register', userController.registerPage)
+router.post('/register', userController.register)
 
 router.get('/', (req, res) => res.redirect('/dives'))
 
