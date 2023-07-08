@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: handlebarsHelpers }))
 app.set('view engine', 'hbs')
+
 app.use(session({
   secret: 'ThisIsMySecret',
   resave: false,
@@ -25,6 +27,8 @@ app.use(session({
 }))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+usePassport(app)
 app.use(routes)
 app.use('/upload', express.static(path.join(__dirname, 'upload')))
 

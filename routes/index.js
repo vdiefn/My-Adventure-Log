@@ -3,6 +3,7 @@ const router = express.Router()
 const divingController = require('../controllers/diving-controller')
 const userController = require('../controllers/user-controller')
 const upload = require('../middleware/multer')
+const passport = require('passport')
 
 
 // 修改資料
@@ -23,7 +24,10 @@ router.delete('/dives/:id', divingController.deleteDive)
 router.get('/dives', divingController.getDives)
 
 // 登入
-router.get('/login', userController.loginPage)
+router.get('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}), userController.loginPage)
 
 // 註冊
 router.get('/register', userController.registerPage)
