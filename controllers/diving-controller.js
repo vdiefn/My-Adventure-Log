@@ -4,7 +4,7 @@ const divingCountCalculator = require('../divingCountCalculator')
 
 
 const divingController = {
-  getDives: (req, res) => {
+  getDives: (req, res, next) => {
     return Diving.find()
     .lean()
     .then(dives => {
