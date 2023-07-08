@@ -24,14 +24,15 @@ router.delete('/dives/:id', divingController.deleteDive)
 router.get('/dives', divingController.getDives)
 
 // 登入
-router.get('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}), userController.loginPage)
+router.get('/login', userController.loginPage)
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login' }), userController.login)
 
 // 註冊
 router.get('/register', userController.registerPage)
 router.post('/register', userController.register)
+
+// 登出
+router.get('/logout', userController.logout)
 
 router.get('/', (req, res) => res.redirect('/dives'))
 

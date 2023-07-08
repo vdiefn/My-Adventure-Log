@@ -5,6 +5,9 @@ const userController = {
   loginPage: (req, res) => {
     res.render('login')
   },
+  login: (req, res) => {
+    res.redirect('/')
+  },
   registerPage: (req, res) => {
     res.render('register')
   },
@@ -25,6 +28,12 @@ const userController = {
       })
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
+    })
+  },
+  logout: (req, res) => {
+    req.logout(function(err) {
+      if(err) {return next(err) }
+      res.redirect('/')
     })
   }
   
