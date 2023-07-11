@@ -31,9 +31,15 @@
 
   <div class="mt-auto p-2 container d-flex  align-self-endd justify-content-start ms-3 mb-3">
     <div class="row ms-2 align-items-end" style="width: 300px;">
+      {{#if isAuthenticated}}
+      <div class="col-8" style="text-decoration:none;">
+        <a class="fw-bold" style="text-decoration:none; color:#B5B5B5;" href="/logout">登出</a>
+      </div>
+      {{else}}
       <div class="col-8" style="text-decoration:none;">
         <a class="fw-bold" style="text-decoration:none; color:#B5B5B5;" href="/login">登入</a>
       </div>
+      {{/if}}
       <div class="col-4">
         <a style="border:1px solid blud;text-decoration:none;" href="/setting"><i class="fa-solid fa-gear"
             style="color:#B5B5B5;"></i></a>
