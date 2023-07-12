@@ -44,7 +44,13 @@ const divingSchema = new Schema({
   },
   note: {
     type:String
-  }
+  },
+  userId: { // 關聯設定
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  } 
 })
 
 module.exports = mongoose.model('Diving', divingSchema)
