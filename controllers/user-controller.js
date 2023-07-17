@@ -11,8 +11,18 @@ const userController = {
   registerPage: (req, res) => {
     res.render('register')
   },
-  register: (req, res) => {
+  register: (req, res, next) => {
     const { name, email, password, passwordCheck } = req.body
+    const errors = []
+    if (!name || !email || !password || !passwordCheck) {
+      errors.push({ message: '所有欄位都是必填的！' })
+    }  
+    if ( password !== passwordCheck ) { 
+      errors.push({ message: '密碼與確認密碼不相符！' })
+    }  
+    if (errors.length) {
+      return res.render('register', { errors, name, email})
+    }
     return Promise.all([
       User.findOne({ name }),
       User.findOne({ email })
@@ -27,14 +37,16 @@ const userController = {
         password
       })
       .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
     })
   },
-  logout: (req, res) => {
+  logout: (req, res, next) => {
     req.logout(function(err) {
       if(err) {return next(err) }
-      res.redirect('/')
+      req.flash('success_msg', '你已經成功登出了！')
+      res.redirect('/login')
     })
+    
   }
   
 

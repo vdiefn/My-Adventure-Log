@@ -1,8 +1,10 @@
 <div class="row" style="min-height:100vh">
 
   <div class="col-12" style="background-color:#202a3c">
-    
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100%;">
+    <div class="container d-flex justify-content-center align-items-center mt-5" style="width:50%;">
+      {{> message}}
+    </div>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 60%;margin-top:10px;">
       <div class="card" style="width: 70%; height:560px; background-color:#303030; border:2px solid #F5F5F5;">
         <div class="card-header d-flex justify-content-center mt-1" style="border-bottom:2px solid #F5F5F5;">
           <h5 style="color:#F5F5F5;">Account Login</h5>
@@ -29,7 +31,7 @@
               <div class="form-row mb-3 mt-3">
                 <label class="form-label" style="color:#D4D4D4;" for="password">密碼</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-    
+                
               </div>
               <div class="mt-5 d-flex align-items-end" style="height:100px;">
                 <button class="btn btn-outline-light btn-block" type="submit">登入</button>

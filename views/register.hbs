@@ -1,9 +1,11 @@
 <div class="row" style="min-height:100vh">
 
   <div class="col-12" style="background-color:#202a3c">
-
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100%;">
-      <div class="card" style="width: 70%; height:65%; background-color:#303030; border:2px solid #F5F5F5;">
+    <div class="container d-flex justify-content-center align-items-center mt-5" style="width:50%;">
+      {{> message}}
+    </div>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 65%; width: 50%;margin-top:10px;">
+      <div class="card" style="width: 100%; height:100%; background-color:#303030; border:2px solid #F5F5F5;">
         <div class="card-header d-flex justify-content-center mt-1" style="border-bottom:2px solid #F5F5F5;">
           <h5 style="color:#F5F5F5;">註冊</h5>
         </div>
@@ -42,6 +44,7 @@
                   placeholder="Password Check" required>
               </div>
               <button class="btn btn-outline-light btn-block mt-2" type="submit">註冊</button>
+              
             </form>
             <div class="me-2 text-end">
               <p style="color:#CFCFCF; font-size:16px;">已經有帳號了嗎？ &nbsp;<a href="/login" style="color:#CFCFCF;text-decoration:none; font-size:16px;">點我登入</a></p>
