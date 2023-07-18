@@ -7,6 +7,7 @@ const passport = require('passport')
 const { authenticator } = require('../middleware/auth')
 
 
+
 // 修改資料
 router.get('/dives/:id/edit', authenticator, divingController.editPage)
 router.put('/dives/:id', authenticator, upload.single('image'), divingController.putDive)

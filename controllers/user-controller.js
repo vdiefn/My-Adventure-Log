@@ -1,5 +1,5 @@
 const User = require('../models/user')
-
+const bcrypt = require('bcryptjs')
 
 const userController = {
   loginPage: (req, res) => {
@@ -28,14 +28,20 @@ const userController = {
       User.findOne({ email })
     ])
     .then(([ nameCheck ,emailCheck]) => {
-      if (nameCheck) throw new Error ('此名稱已被使用！')
-      if (emailCheck) throw new Error ('此信箱已被註冊！')
-      if ( password !== passwordCheck) throw new Error ('密碼和確認密碼不一致！')
-      return User.create({
-        name,
-        email,
-        password
-      })
+      if (nameCheck) {
+        errors.push({ message: '此名稱已被註冊！' })
+      }
+      if (emailCheck) {
+        errors.push({ message: '此信箱已被註冊！'})  
+      }
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          name,
+          email,
+          password: hash
+        }))
       .then(() => res.redirect('/'))
       .catch(err => next(err))
     })
