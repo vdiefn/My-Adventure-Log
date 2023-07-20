@@ -25,6 +25,12 @@ router.delete('/dives/:id', authenticator, divingController.deleteDive)
 // 瀏覽全部紀錄
 router.get('/dives', authenticator, divingController.getDives)
 
+// 瀏覽動態
+router.get('/story', authenticator, divingController.getStory)
+
+// 設定頁
+router.get('/users/setting', authenticator, userController.getSettingPage)
+
 // 登入
 router.get('/login', userController.loginPage)
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }), userController.login)

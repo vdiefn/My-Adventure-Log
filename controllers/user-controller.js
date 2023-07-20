@@ -52,7 +52,15 @@ const userController = {
       req.flash('success_msg', '你已經成功登出了！')
       res.redirect('/login')
     })
-    
+  },
+  getSettingPage: (req, res, next) => {
+    const id = req.user._id
+    User.findById(id)
+      .lean()
+      .then(user => {
+        res.render('setting', { user })
+      })
+
   }
   
 

@@ -110,6 +110,16 @@ const divingController = {
       })
     .then(() => res.redirect('/dives'))
     .catch(err => console.log(err))
+  },
+  getStory: (req, res) => {
+    const userId = req.user._id
+    return Diving.find({ userId })
+      .lean()
+      .sort({ _id: 'asc' })
+      .then(dives => {
+        return res.render('story', { dives })
+      })
+      .catch(err => console.log(err))
   }
 }
 
