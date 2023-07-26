@@ -3,9 +3,133 @@
     {{> nav-left}}
   </div>
 
+  <div class="col-10" style="background-color:#202a3c;">
+    <div class="d-flex row justify-content-center mt-5" style="height:80%;">
+      <div class="d-flex justify-content-between mt-5 ms-5" style="color:#F5F5F5; height:5%; width: 60%;">
+        <a href="javascript:history.back()">
+          <i class="fa-solid fa-arrow-left-long" style="color: #F5F5F5;"></i>
+        </a>
+        <a href="/users/{{user._id}}/edit">
+          <i class="fa-regular fa-pen-to-square fa-lg ms-1" style="color: #F5F5F5;"></i>
+        </a>
+      </div>
+      <div class="container d-flex justify-content-center align-items-center mb-1" style=" margin-left: 21%; width:62%;">
+        {{> message}}
+      </div>
+      <div class="ms-5" style="border:3px solid #F5F5F5; width: 60%; height:65%; border-radius:1%">
 
-  <div class="col-10" style="background-color:#202a3c">
+        <div class="d-flex row justify-content-center mt-3" style="height: 100%;">
+          <div class="col-6 d-flex mt-5" style="width:40%; height: 65%;">
+            <div class="d-flex justify-content-center align-items-center mt-3 ms-3"
+              style="width:90%; height:90%; border:1px solid #F5F5F5;border-radius:1%">
+              {{#if user.image}}
+              <img src="{{user.image}}" style="width:100%; height:100%;">
+              {{else}}
+              <div class="d-flex justify-content-center align-items-center">
+                <img src="https://i.imgur.com/w3dssj0.png" style="width:85%; height:85%;">
+              </div>
+              {{/if}}
+            </div>
+          </div>
+
+          <div class="col-6  d-flex ms-1 flex-column align-items-center justify-content-center mt-4"
+            style="width:55%; height: 80%;">
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>名稱</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 40%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2">{{user.name}}</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>Email</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 40%; border-bottom:2px solid #969696;">
+                <h6 class="ms-2">{{user.email}}</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>密碼</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 40%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2">**********</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>生日</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 40%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2">{{user.dateOfBirth}}</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>發照日期</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 40%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2">{{user.issuedDate}}</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>發照地點</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 42%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2">{{user.issuedLocation}}</h6>
+              </div>
+            </div>
+          
+            <div class="d-flex justify-content-center align-items-center" style="width: 100%; height:25%;">
+              <div class="col-2" style="color:#F5F5F5;height: 35%;">
+                <h6>潛水次數</h6>
+              </div>
+              <div class="col-1" style="color:#F5F5F5;height: 40%;">
+                <h6>：</h6>
+              </div>
+              <div class="col-9" style="color:#F5F5F5;height: 37%;border-bottom:2px solid #969696;">
+                <h6 class="ms-2"></h6>
+              </div>
+            </div>
+          
+          </div>
+
+
+      </div>
+      
+
+        
+      </div>
+    </div>
+    
     
   </div>
+  
 
 </div>  

@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const { localFileHandler } = require('../helpers/file-helpers')
 
 const userController = {
   loginPage: (req, res) => {
@@ -60,7 +61,44 @@ const userController = {
       .then(user => {
         res.render('setting', { user })
       })
+  },
+  editSettingPage: (req, res, next) => {
+    const id = req.user._id
+    return User.findById(id)
+      .lean()
+      .then((user) => res.render('editSetting', { user }))
+      .catch(err => console.log(err))
+  },
+  editSetting: (req, res, next) => {
+    const id = req.user._id
 
+    const { name, email, password, passwordCheck, dateOfBirth, issuedDate, issuedLocation } = req.body
+    const { file } = req
+    if (!name) throw new Error('名稱為必填欄位！')
+    if (!email) throw new Error('Email為必填欄位！')
+    if (password !== passwordCheck) throw new Error('密碼和確認密碼不相符！')
+
+    Promise.all([
+      localFileHandler(file),
+      User.findById(id),
+      User.findOne({ email: email }),
+      User.findOne({ name:name })
+    ])
+      .then(async([ filePath, user]) => {
+        user.name = name
+        user.email = email
+        user.password = await bcrypt.hash(password, 10) || user.password
+        user.image = filePath || user.image
+        user.dateOfBirth = dateOfBirth || user.dateOfBirth
+        user.issuedDate = issuedDate || user.issuedDate
+        user.issuedLocation = issuedLocation || user.issuedLocation
+        return user.save()
+      })
+      .then(() => {
+        req.flash('success_msg', '已成功更新使用者資訊！')
+        res.redirect(`/users/${id}`)
+      })
+    .catch(err => next(err))
   }
   
 

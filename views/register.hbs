@@ -26,8 +26,7 @@
             <form class="form-signup" action="/register" method="POST" style="width: 100%;">
               <div class="form-row mb-3">
                 <label class="form-label" for="name" style="color:#F5F5F5;">名稱</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required
-                  value="{{ name }}">
+                <input type="text" id="name" name="name" class="form-control" maxlength="20" placeholder="Name" required value="{{ name }}">
               </div>
               <div class="form-row mb-3">
                 <label class="form-label" for="email" style="color:#F5F5F5;">電子信箱</label>
@@ -36,11 +35,11 @@
               </div>
               <div class="form-row mb-3">
                 <label class="form-label" for="password" style="color:#F5F5F5;">密碼</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" id="password" name="password" class="form-control" maxlength="20" placeholder="最多可輸入20個字" required>
               </div>
               <div class="form-row mb-3">
                 <label class="form-label" for="passwordCheck" style="color:#F5F5F5;">密碼確認</label>
-                <input type="password" id="passwordCheck" name="passwordCheck" class="form-control"
+                <input type="password" id="passwordCheck" name="passwordCheck" maxlength="20" class="form-control"
                   placeholder="Password Check" required>
               </div>
               <button class="btn btn-outline-light btn-block mt-2" type="submit">註冊</button>

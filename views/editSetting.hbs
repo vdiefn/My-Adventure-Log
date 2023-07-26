@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-2" style="background-color:#303030;">
+    {{> nav-left}}
+  </div>
+
+  <div class="col-10" style="background-color:#202a3c; color:white; min-height:850px;">
+    <div class="d-flex justify-content-center">
+      <form action="/users/{{user._id}}?_method=PUT" method = "POST" style="width: 60%;" enctype="multipart/form-data">
+        <div class="mt-5 text-center">
+          <h3 class="fw-bold" style="color:#F5F5F5;"><i class="fa-regular fa-pen-to-square"
+              style="color: #abb4c4;"></i>修改個人資訊</h3>
+        </div>
+
+        
+        <div class="text-center mt-5 pt-5 mb-5"
+          style="width: 80%; margin: auto; border:3px solid #BFBFBF; opacity:0.8; border-radius: 2%;">
+
+          <div class="row mb-4 g-2 me-5">
+            <label class="col-md-4 col-form-label" for="image" style="color:#D4D4D4">
+              頭像
+            </label>
+            <div class="col-md-7">
+              <input class="form-control" type="file" class="form-control-file" id="image" name="image">
+            </div>
+          </div>
+
+    
+          <div class="row mb-4 g-2 me-5">
+            <label for="name" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              名稱
+            </label>
+            <div class="col-md-7">
+              <input type="text" name="name" class="form-control" id="name" placeholder="請選擇名稱" value="{{user.name}}" required>
+            </div>
+          </div>
+    
+          <div class="row mb-4 g-2 me-5">
+            <label for="email" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              Email
+            </label>
+            <div class="col-md-7">
+              <input type="text" name="email" class="form-control" id="email" placeholder="email" value="{{user.email}}" required>
+            </div>
+          </div>
+    
+          <div class="row mb-4 g-2 me-5">
+            <label for="password" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              密碼
+            </label>
+            <div class="col-md-7">
+              <input type="password" name="password" class="form-control" id="password" maxlength="20" placeholder="請輸入密碼，最多可輸入20個字" required>
+            </div>
+          </div>
+
+          <div class="row mb-4 g-2 me-5">
+            <label for="passwordCheck" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              確認密碼
+            </label>
+            <div class="col-md-7">
+              <input type="password" name="passwordCheck" class="form-control" id="passwordCheck" maxlength="20" placeholder="請再次輸入密碼" required>
+            </div>
+          </div>
+    
+          <div class="row mb-4 g-2 me-5">
+            <label for="dateOfBirth" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              生日
+            </label>
+            <div class="col-md-7">
+              <input type="date" name="dateOfBirth" class="form-control" id="dateOfBirth" placeholder="請輸入出生年月日" value="{{user.dateOfBirth}}">
+            </div>
+          </div>
+    
+          <div class="row mb-4 g-2 me-5">
+            <label for="issuedDate" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              發照日期
+            </label>
+            <div class="col-md-7">
+              <input type="date" name="issuedDate" class="form-control" id="issuedDate" placeholder="請選擇發照日期" value="{{user.issuedDate}}">
+            </div>
+          </div>
+    
+          <div class="row mb-3 g-2 me-5">
+            <label for="issuedLocation" class="col-md-4 col-form-label" style="color:#D4D4D4">
+              發照地點
+            </label>
+            <div class="col-md-7">
+              <input type="text" name="issuedLocation" class="form-control" id="issuedLocation" placeholder="請輸入發照地點" value="{{user.issuedLocation}}">
+            </div>
+          </div>
+
+          <div class="container d-flex justify-content-end align-items-center" style="width:75%;">
+            {{> message}}
+          </div>
+
+          <hr style="border-top:3px solid #abb4c4;">
+
+          <div class="d-flex flex-row justify-content-between mb-3 mt-3 g-2 me-4">
+            <a href="javascript:history.back()" type="button" class="btn ms-5"><i class="fa-solid fa-x"
+                style="color: #F5F5F5;"></i></a>
+            <button class="btn ms-2" type="submit"><i class="fa-solid fa-check" style="color: #D4D4D4;"></i></button>
+          
+          </div>
+    
+        </div>
+    
+      </form>
+    </div>
+  </div>
+
+</div>

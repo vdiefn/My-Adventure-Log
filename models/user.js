@@ -16,6 +16,19 @@ const userSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  image: {
+    type: String,
+    default: "https://i.imgur.com/w3dssj0.png"
+  },
+  dateOfBirth: {
+    type: String
+  },
+  issuedDate: {
+    type: String
+  },
+  issuedLocation: {
+    type: String
   }
 })
 

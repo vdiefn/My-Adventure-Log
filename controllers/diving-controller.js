@@ -18,12 +18,13 @@ const divingController = {
   createPage: (req, res) => {
     return res.render( 'create' )
   },
-  createDiving: (req, res) => {
+  createDiving: (req, res, next) => {
     const userId = req.user._id
     const { date, subject, location, divingType, weather, surfaceTemp, underwaterTemp, divingTime, maxDepth, residualPressure, visibility, note } = req.body
     const { file } = req
     if ( !date ) throw new Error('請填上日期！')
     if ( !location ) throw new Error('請加入潛水地點！')
+    if ( !divingType ) throw new Error('請選擇潛水方式！')
     localFileHandler(file)
       .then(filePath => Diving.create({
       date, 
@@ -45,7 +46,7 @@ const divingController = {
       
       res.redirect('/dives')
     })
-    .catch(err => console.log(err))
+    .catch(err => next(err))
   },
   getDive: (req, res) => {
     const userId = req.user._id
@@ -69,12 +70,13 @@ const divingController = {
       .catch(err => console.log(err))
   },
 
-  putDive: (req, res) => {
+  putDive: (req, res, next) => {
     const userId = req.user._id
     const { date, subject, location, divingType, weather, surfaceTemp, underwaterTemp, divingTime, maxDepth, residualPressure, visibility, note } = req.body
     const { file } = req
     if (!date) throw new Error('請填上日期！')
     if (!location) throw new Error('請加入潛水地點！')
+    if (!divingType) throw new Error('請選擇潛水方式！')
     const _id = req.params.id
     Promise.all([
       Diving.findOne({ _id, userId }),
@@ -98,7 +100,7 @@ const divingController = {
         
       })
       .then(() => res.redirect(`/dives/${_id}`))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
     deleteDive: (req, res) => {
     const userId = req.user._id

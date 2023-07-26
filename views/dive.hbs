@@ -14,15 +14,19 @@
     </div>
 
     <div class="d-flex ms-5 mt-3" style="height: 80%;">
-      <div class="" style="border:2px solid #F5F5F5;">
+      <div class="" style="border:2px solid #F5F5F5; border-radius: 4px;">
+        {{#if dive.image}}
         <img class="justify-content-start" src="{{dive.image}}" style="width:650px; height:500px; border-bottom:2px solid #F5F5F5;">
+        {{else}}
+        <img class="justify-content-start" src="https://i.imgur.com/qoGgz0g.png" style="width:650px; height:500px; border-bottom:2px solid #F5F5F5;">
+        {{/if}}
         <div class="mt-2 ms-2 me-2"style="width:630px; height: 30%;">
           <h6 style="color:#F5F5F5;">筆記摘要：</h6>
           <p style="color:#F5F5F5;">{{dive.note}}</p>
         </div>
       </div> 
 
-      <div class="container d-flex justify-content-center ms-2" style="width: 40%; height:100%; border:2px solid #F5F5F5;">
+      <div class="container d-flex justify-content-center ms-2" style="width: 40%; height:100%; border:2px solid #F5F5F5; border-radius: 4px;">
         <div class="mt-3 flex-fill row" style="width:100%; height: 5%; color:#F5F5F5;">
           <h5>{{dive.location}}</h5>
           <div class="mt-3 col " style="width: 45%; color:#F5F5F5;">
