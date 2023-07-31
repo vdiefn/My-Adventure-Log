@@ -1,19 +1,59 @@
 const { localFileHandler } = require("../helpers/file-helpers")
 const Diving = require("../models/diving")
 const divingCountCalculator = require('../divingCountCalculator')
+const dayjs = require('dayjs')
 
 
 const divingController = {
   getDives: (req, res, next) => {
     const userId = req.user._id
-    return Diving.find({ userId })
-    .lean()
-    .sort({ _id: 'asc'})
-    .then(dives => {
-      totalCount = divingCountCalculator(dives)
-      return res.render('dives', { dives, totalCount })
-    })
-    .catch(err => console.log(err))
+    const filterYear = req.query.filterYear
+
+    if ( filterYear === '2023'){
+      return Diving.find({ 
+        userId,
+        date: { $gte: new Date('2023-01-01'), $lte: new Date('2023-12-31')}
+      })
+      .lean()
+      .then(dives => {
+        totalCount = divingCountCalculator(dives)
+        return res.render('dives', { dives, totalCount})
+      })
+        .catch(err => next(err))
+    } else if (filterYear === '2022'){
+      return Diving.find({
+        userId,
+        date: { $gte: new Date('2022-01-01'), $lte: new Date('2022-12-31') }
+      })
+        .lean()
+        .then(dives => {
+          totalCount = divingCountCalculator(dives)
+          return res.render('dives', { dives, totalCount })
+        })
+        .catch(err => next(err))
+    } else if (filterYear === '2021'){
+      return Diving.find({
+        userId,
+        date: { $gte: new Date('2021-01-01'), $lte: new Date('2021-12-31') }
+      })
+        .lean()
+        .then(dives => {
+          totalCount = divingCountCalculator(dives)
+          return res.render('dives', { dives, totalCount })
+        })
+        .catch(err => next(err))
+    }
+    else {
+      return Diving.find({
+        userId,
+      })
+        .lean()
+        .then(dives => {
+          totalCount = divingCountCalculator(dives)
+          return res.render('dives', { dives, totalCount })
+        })
+        .catch(err => next(err))
+    } 
   },
   createPage: (req, res) => {
     return res.render( 'create' )
@@ -123,6 +163,7 @@ const divingController = {
       })
       .catch(err => console.log(err))
   }
+
 }
 
 module.exports = divingController

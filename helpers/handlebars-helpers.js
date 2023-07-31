@@ -6,6 +6,7 @@ dayjs.extend(relativeTime)
 
 module.exports = {
   currentYear: () => dayjs().year(),
+  recordDate: (date) => dayjs(date).format('YYYY/MM/DD'),
   ifCond: function( a, b, options) {
     return a === b ? options.fn(this) : options.inverse(this)
   },

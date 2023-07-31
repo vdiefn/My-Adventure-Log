@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const divingSchema = new Schema({
   date:{
-    type: String,
+    type: Date,
     required: true
   },
   subject: {

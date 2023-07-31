@@ -17,6 +17,8 @@
           </div>
         </div>
 
+        
+
         <div class="container">
           <div class="d-flex justify-content-end">
             <script language="javascript">
@@ -43,6 +45,26 @@
               </a>
             </div>
           </div>
+
+          <br />
+          <br />
+
+          <div class="container d-flex justify-content-start">
+            <div class="row">
+              <form action="/dives" method="GET">
+                <div class="col">
+                  <select name="filterYear" id="filterYear"
+                    style="width:150px; height:40px; border-radius:3%; border-color:#D9D9D9; padding-left: 10px;" onchange="this.form.submit()">
+                    <option selected disabled>-年份選擇-</option>
+                    <option value="all" {{#ifCond filterYear 'all'}} selected {{/ifCond}}>全部</option>
+                    <option value="2023" {{#ifCond filterYear "2023"}} selected {{/ifCond}}>2023</option>
+                    <option value="2022" {{#ifCond filterYear "2022"}} selected {{/ifCond}}>2022</option>
+                    <option value="2021" {{#ifCond filterYear "2021"}} selected {{/ifCond}}>2021</option>
+                  </select>
+                </div>
+              </form>             
+            </div>
+          </div>
         
           <br />
           <br />
@@ -60,7 +82,7 @@
             <tbody>
               {{#each dives}}
               <tr>
-                <th scope="row" style="color:#F5F5F5">{{this.date}}</th>
+                <th scope="row" style="color:#F5F5F5">{{recordDate this.date}}</th>
                 <td style="color:#F5F5F5">{{this.location}}</td>
                 <td style="color:#F5F5F5">{{this.divingType}}</td>
                 <td style="color:#F5F5F5; justify-content:center; padding-left:25px;">1</td>
