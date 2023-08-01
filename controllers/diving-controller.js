@@ -17,7 +17,7 @@ const divingController = {
       .lean()
       .then(dives => {
         totalCount = divingCountCalculator(dives)
-        return res.render('dives', { dives, totalCount})
+        return res.render('dives', { dives, totalCount })
       })
         .catch(err => next(err))
     } else if (filterYear === '2022'){
@@ -88,7 +88,7 @@ const divingController = {
     })
     .catch(err => next(err))
   },
-  getDive: (req, res) => {
+  getDive: (req, res, next) => {
     const userId = req.user._id
     const _id = req.params.id
     Diving.findOne({ _id, userId })
@@ -97,9 +97,9 @@ const divingController = {
         if (!dive) throw new Error("該筆資料不存在！")
         res.render('dive', { dive })
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
-  editPage: (req, res) => {
+  editPage: (req, res, next) => {
     const userId = req.user._id
     const _id = req.params.id
     Diving.findOne({ _id, userId })
@@ -107,7 +107,7 @@ const divingController = {
       .then(dive => {
         res.render('edit', { dive })
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
 
   putDive: (req, res, next) => {
@@ -123,7 +123,7 @@ const divingController = {
       localFileHandler(file)
     ])
       .then(([dive, filePath]) => {
-        dive.date = date
+        dive.date = date || dive.date
         dive.subject = subject
         dive.location = location
         dive.divingType = divingType
@@ -162,6 +162,20 @@ const divingController = {
         return res.render('story', { dives })
       })
       .catch(err => console.log(err))
+  },
+  searchDives: (req, res, next) => {
+    const keyword = req.query.keyword
+    return Diving.find()
+      .lean()
+      .then(dives => {
+        const result = dives.filter(dive => {
+          return dive.subject.toLowerCase().includes(keyword.toLowerCase()) ||
+          dive.location.toLowerCase().includes(keyword.toLowerCase()) ||
+          dive.divingType.toLowerCase().includes(keyword.toLowerCase())
+        })
+        res.render('dives', { dives: result, keyword })
+      })
+      .catch(err => next(err))
   }
 
 }

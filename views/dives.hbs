@@ -50,19 +50,30 @@
           <br />
 
           <div class="container d-flex justify-content-start">
-            <div class="row">
-              <form action="/dives" method="GET">
-                <div class="col">
+            <div class="row"  style="width: 100%;">
+              <div class="col-2">
+                <form action="/dives" method="GET">
                   <select name="filterYear" id="filterYear"
-                    style="width:150px; height:40px; border-radius:3%; border-color:#D9D9D9; padding-left: 10px;" onchange="this.form.submit()">
+                    style="width:150px; height:40px; border-radius:6%; border-color:#D9D9D9; padding-left: 10px;" onchange="this.form.submit()">
                     <option selected disabled>-年份選擇-</option>
-                    <option value="all" {{#ifCond filterYear 'all'}} selected {{/ifCond}}>全部</option>
-                    <option value="2023" {{#ifCond filterYear "2023"}} selected {{/ifCond}}>2023</option>
-                    <option value="2022" {{#ifCond filterYear "2022"}} selected {{/ifCond}}>2022</option>
-                    <option value="2021" {{#ifCond filterYear "2021"}} selected {{/ifCond}}>2021</option>
+                    <option value="all" {{#if filterYear }} selected {{/if}}>全部</option>
+                    <option value="2023" {{#if filterYear }} selected {{/if}}>2023</option>
+                    <option value="2022" {{#if filterYear }} selected {{/if}}>2022</option>
+                    <option value="2021" {{#if filterYear }} selected {{/if}}>2021</option>
                   </select>
-                </div>
-              </form>             
+                </form>
+              </div>
+              
+              <div class="col-5 container-fluid">
+                <form class="d-flex" role="search" action="/search">
+                  <input class="form-control me-2" type="search" placeholder="搜尋" aria-label="Search" name="keyword" value="{{keyword}}" style="width:70%; height:30%">
+                  <button class="btn btn-outline-secondary btn-sm" type="submit" style="width:50% height:50%">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ced6e3; "></i>
+                  </button>
+                </form>
+              </div> 
+              
+              
             </div>
           </div>
         

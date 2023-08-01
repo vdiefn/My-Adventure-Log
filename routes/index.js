@@ -29,13 +29,17 @@ router.get('/dives', authenticator, divingController.getDives)
 // 瀏覽動態
 router.get('/story', authenticator, divingController.getStory)
 
+// 搜尋
+router.get('/search', authenticator, divingController.searchDives)
+
+
+
 // 設定頁
 router.get('/users/:id', authenticator, userController.getSettingPage)
 
 // 修改設定頁
 router.get('/users/:id/edit', authenticator, userController.editSettingPage)
 router.put('/users/:id', authenticator, upload.single('image'), userController.editSetting)
-
 
 // 登入
 router.get('/login', userController.loginPage)
