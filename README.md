@@ -3,7 +3,7 @@
 
 ## 使用Node.js、Express以及MongoDB打造電腦版的個人潛水日誌。
 
----
+
 ### 產品功能
 
 
@@ -29,8 +29,11 @@
 ### 畫面
 
 - 個人潛水日誌首頁
+![image](https://github.com/vdiefn/My-Adventure-Log/blob/main/1691306939790.jpg)
 - 潛水日誌內容
+![image](https://github.com/vdiefn/My-Adventure-Log/blob/main/1691307157052.jpg)
 - 個人資料顯示方式
+![image](https://github.com/vdiefn/My-Adventure-Log/blob/main/1691307928777.jpg)
 
 ---
 ### 安裝流程
