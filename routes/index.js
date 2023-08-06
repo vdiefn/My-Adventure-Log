@@ -32,6 +32,8 @@ router.get('/story', authenticator, divingController.getStory)
 // 搜尋
 router.get('/search', authenticator, divingController.searchDives)
 
+// 動態頁面搜尋
+router.get('/searchStory', authenticator, divingController.searchStory)
 
 
 // 設定頁

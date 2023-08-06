@@ -15,6 +15,7 @@ const divingController = {
         date: { $gte: new Date('2023-01-01'), $lte: new Date('2023-12-31')}
       })
       .lean()
+        .sort({ date: 'desc' })
       .then(dives => {
         totalCount = divingCountCalculator(dives)
         return res.render('dives', { dives, totalCount })
@@ -26,6 +27,7 @@ const divingController = {
         date: { $gte: new Date('2022-01-01'), $lte: new Date('2022-12-31') }
       })
         .lean()
+        .sort({ date: 'desc' })
         .then(dives => {
           totalCount = divingCountCalculator(dives)
           return res.render('dives', { dives, totalCount })
@@ -37,6 +39,7 @@ const divingController = {
         date: { $gte: new Date('2021-01-01'), $lte: new Date('2021-12-31') }
       })
         .lean()
+        .sort({ date: 'desc' })
         .then(dives => {
           totalCount = divingCountCalculator(dives)
           return res.render('dives', { dives, totalCount })
@@ -48,6 +51,7 @@ const divingController = {
         userId,
       })
         .lean()
+        .sort({ date: 'desc' })
         .then(dives => {
           totalCount = divingCountCalculator(dives)
           return res.render('dives', { dives, totalCount })
@@ -155,13 +159,49 @@ const divingController = {
   },
   getStory: (req, res) => {
     const userId = req.user._id
-    return Diving.find({ userId })
-      .lean()
-      .sort({ _id: 'asc' })
-      .then(dives => {
-        return res.render('story', { dives })
+    const filterYear = req.query.filterYear
+    if (filterYear === '2023') {
+      return Diving.find({
+        userId,
+        date: { $gte: new Date('2023-01-01'), $lte: new Date('2023-12-31') }
       })
-      .catch(err => console.log(err))
+        .lean()
+        .then(dives => {
+          return res.render('story', { dives })
+        })
+        .catch(err => next(err))
+    } else if (filterYear === '2022') {
+      return Diving.find({
+        userId,
+        date: { $gte: new Date('2022-01-01'), $lte: new Date('2022-12-31') }
+      })
+        .lean()
+        .then(dives => {
+          totalCount = divingCountCalculator(dives)
+          return res.render('story', { dives })
+        })
+        .catch(err => next(err))
+    } else if (filterYear === '2021') {
+      return Diving.find({
+        userId,
+        date: { $gte: new Date('2021-01-01'), $lte: new Date('2021-12-31') }
+      })
+        .lean()
+        .then(dives => {
+          totalCount = divingCountCalculator(dives)
+          return res.render('story', { dives })
+        })
+        .catch(err => next(err))
+    } else {
+      return Diving.find({ userId })
+        .lean()
+        .sort({ date: 'desc' })
+        .then(dives => {
+          return res.render('story', { dives })
+        })
+        .catch(err => console.log(err))
+      }    
+    
   },
   searchDives: (req, res, next) => {
     const keyword = req.query.keyword
@@ -173,11 +213,25 @@ const divingController = {
           dive.location.toLowerCase().includes(keyword.toLowerCase()) ||
           dive.divingType.toLowerCase().includes(keyword.toLowerCase())
         })
-        res.render('dives', { dives: result, keyword })
+        totalCount = divingCountCalculator(result)
+        res.render('dives', { dives: result, keyword, totalCount })
       })
       .catch(err => next(err))
-  }
-
+  },
+  searchStory: (req, res, next) => {
+    const keyword = req.query.keyword
+    return Diving.find()
+      .lean()
+      .then(dives => {
+        const result = dives.filter(dive => {
+          return dive.subject.toLowerCase().includes(keyword.toLowerCase()) ||
+            dive.location.toLowerCase().includes(keyword.toLowerCase()) ||
+            dive.divingType.toLowerCase().includes(keyword.toLowerCase())
+        })
+        res.render('story', { dives: result, keyword })
+      })
+      .catch(err => next(err))
+  }    
 }
 
 module.exports = divingController
