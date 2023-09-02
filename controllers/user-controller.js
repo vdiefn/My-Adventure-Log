@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
-const { localFileHandler } = require('../helpers/file-helpers')
+const { imgurFileHandler } = require('../helpers/file-helpers')
 const Diving = require('../models/diving')
 const divingCountCalculator = require('../divingCountCalculator')
 
@@ -88,7 +88,7 @@ const userController = {
     if (password !== passwordCheck) throw new Error('密碼和確認密碼不相符！')
 
     Promise.all([
-      localFileHandler(file),
+      imgurFileHandler(file),
       User.findById(id),
       User.findOne({ email: email }),
       User.findOne({ name:name })

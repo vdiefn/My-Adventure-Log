@@ -1,4 +1,4 @@
-const { localFileHandler } = require("../helpers/file-helpers")
+const { imgurFileHandler } = require("../helpers/file-helpers")
 const Diving = require("../models/diving")
 const divingCountCalculator = require('../divingCountCalculator')
 const dayjs = require('dayjs')
@@ -69,7 +69,7 @@ const divingController = {
     if ( !date ) throw new Error('請填上日期！')
     if ( !location ) throw new Error('請加入潛水地點！')
     if ( !divingType ) throw new Error('請選擇潛水方式！')
-    localFileHandler(file)
+    imgurFileHandler(file)
       .then(filePath => Diving.create({
       date, 
       subject, 
@@ -124,7 +124,7 @@ const divingController = {
     const _id = req.params.id
     Promise.all([
       Diving.findOne({ _id, userId }),
-      localFileHandler(file)
+      imgurFileHandler(file)
     ])
       .then(([dive, filePath]) => {
         dive.date = date || dive.date
